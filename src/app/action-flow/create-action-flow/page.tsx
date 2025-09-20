@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/cuteui/components/button/button";
 import FloatingSidebar from "@/cuteui/components/floatingSideBar";
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { AiOutlineCluster } from "react-icons/ai";
 import { FaChevronRight, FaExpand, FaMinus, FaPlus } from "react-icons/fa";
 import { IoSaveOutline, IoPaperPlaneOutline } from "react-icons/io5";
@@ -10,58 +10,22 @@ import {
   Background,
   useReactFlow,
   ReactFlowProvider,
+  applyEdgeChanges,
+  applyNodeChanges,
+  addEdge,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
+import { FlowCanvas } from "@/cuteui/components/flowCanvas";
 
-// ------------------ Custom Controls ------------------
-const CustomControls = () => {
-  const { zoomIn, zoomOut, fitView } = useReactFlow();
-
-  return (
-    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3 bg-white p-2 rounded-lg shadow-md">
-      <button
-        onClick={() => zoomIn()}
-        className="p-2 rounded hover:bg-gray-100"
-      >
-        <FaPlus />
-      </button>
-      <button
-        onClick={() => zoomOut()}
-        className="p-2 rounded hover:bg-gray-100"
-      >
-        <FaMinus />
-      </button>
-      <button
-        onClick={() => fitView()}
-        className="p-2 rounded hover:bg-gray-100"
-      >
-        <FaExpand />
-      </button>
-    </div>
-  );
-};
-
-// ------------------ Flow Canvas ------------------
-const FlowCanvas = () => {
-  const nodes = [
-    { id: "1", position: { x: 100, y: 100 }, data: { label: "Node 1" } },
-    { id: "2", position: { x: 100, y: 200 }, data: { label: "Node 2" } },
-  ];
-  const edges = [{ id: "e1-2", source: "1", target: "2" }];
-
-  return (
-    <div className="h-[calc(100%-70px)] w-full relative">
-      <ReactFlow nodes={nodes} edges={edges} fitView>
-        <Background />
-        <CustomControls />
-      </ReactFlow>
-    </div>
-  );
-};
-
-// ------------------ Main Page ------------------
 const Page = () => {
   const handleClick = () => alert("Hello");
+  const initialNodes = [
+      { id: "1", position: { x: 100, y: 100 }, data: { label: "Node 1" } },
+      { id: "2", position: { x: 100, y: 200 }, data: { label: "Node 2" } },
+    ];
+    const initialEdges = [{ id: "e1-2", source: "1", target: "2"}];
+      const [nodes, setNodes] = useState(initialNodes);
+      const [edges, setEdges] = useState(initialEdges);
 
   return (
     <div className="bg-[#f3f3f3] h-[100vh] w-[100vw]">
@@ -105,7 +69,7 @@ const Page = () => {
 
       {/* Flow Canvas inside Provider */}
       <ReactFlowProvider>
-        <FlowCanvas />
+        <FlowCanvas nodes={nodes} setNodes={setNodes} edges={edges} setEdges={setEdges}/>
       </ReactFlowProvider>
     </div>
   );
