@@ -9,12 +9,12 @@ import { TbClockCheck, TbClockPlus } from "react-icons/tb";
 import { MdOutlinePersonAddAlt } from "react-icons/md";
 import { RiFileList2Line } from "react-icons/ri";
 
-const FloatingSidebar = () => {
+const FloatingSidebar = ({setFormOpen}:any) => {
   const [active, setActive] = useState(0);
 
   const menuItems = [
-    { icon: <BsDatabase />, label: "Database" },
-    { icon: <PiTreeStructureDuotone />, label: "Cluster" },
+    { icon: <BsDatabase />, label: "Recipents" },
+    { icon: <PiTreeStructureDuotone />, label: "Condition" },
     { icon: <AiOutlineNodeIndex />, label: "Node" },
     { icon: <TbClockPlus />, label: "Target" },
     { icon: <TbClockCheck />, label: "Stats" },
@@ -25,12 +25,12 @@ const FloatingSidebar = () => {
   ];
 
   return (
-    <div className="fixed top-1/2 left-[10px] -translate-y-1/2 bg-white rounded-xl shadow-md py-2">
+    <div className="absolute top-1/2 left-[10px] -translate-y-1/2 z-50 bg-white rounded-xl shadow-md py-2">
       <ul className="flex flex-col">
         {menuItems.map((item, index) => (
           <li
             key={index}
-            onClick={() => setActive(index)}
+            onClick={() => {setActive(index);setFormOpen(item.label)}}
             className={`flex items-center justify-center p-4 text-lg cursor-pointer transition-all duration-300
               ${false
                 ? "bg-[#e8f8f3] border-l-4 border-[#389F7F]"

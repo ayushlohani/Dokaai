@@ -10,9 +10,9 @@ import {
   useReactFlow,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import CustomFlowNode from "../customeFlowNode";
+import CustomFlowNode, { CustomFlowSumNode } from "../customeFlowNode";
 
-const nodeTypes = { customnode : CustomFlowNode };
+const nodeTypes = { customnode : CustomFlowNode,customnodeplus:CustomFlowSumNode};
 // ------------------ Custom Controls ------------------
 const CustomControls = () => {
   const { zoomIn, zoomOut, fitView,setViewport } = useReactFlow();
