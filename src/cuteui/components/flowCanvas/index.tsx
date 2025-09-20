@@ -10,9 +10,13 @@ import {
   useReactFlow,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
+import CustomFlowNode from "../customeFlowNode";
+
+const nodeTypes = { customnode : CustomFlowNode };
 // ------------------ Custom Controls ------------------
 const CustomControls = () => {
-  const { zoomIn, zoomOut, fitView } = useReactFlow();
+  const { zoomIn, zoomOut, fitView,setViewport } = useReactFlow();
+  setViewport({x:580,y:0,zoom: 1 });
 
   return (
     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3 bg-white p-2 rounded-lg shadow-md">
@@ -55,7 +59,7 @@ const onConnect = useCallback(
   return (
     <div className="h-[calc(100%-70px)] w-full relative">
       <ReactFlow nodes={nodes} edges={edges} onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange} onConnect={onConnect} fitView>
+        onEdgesChange={onEdgesChange} onConnect={onConnect} nodeTypes={nodeTypes} fitView>
         <Background />
         <CustomControls />
       </ReactFlow>

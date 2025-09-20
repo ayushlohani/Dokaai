@@ -20,10 +20,11 @@ import { FlowCanvas } from "@/cuteui/components/flowCanvas";
 const Page = () => {
   const handleClick = () => alert("Hello");
   const initialNodes = [
-      { id: "1", position: { x: 100, y: 100 }, data: { label: "Node 1" } },
-      { id: "2", position: { x: 100, y: 200 }, data: { label: "Node 2" } },
+      { id: "1", position: { x: 100, y: 100 }, data: { label: "Node 1" } ,type : 'customnode'},
+      { id: "2", position: { x: 200, y: 200 }, data: { label: "Node 2" } },
+      { id: "3", position: { x: 0, y: 200 }, data: { label: "Node 3" } },
     ];
-    const initialEdges = [{ id: "e1-2", source: "1", target: "2"}];
+    const initialEdges = [{ id: "e1-2", source: "1", target: "2",sourceHandle: 'b'},{ id: "e1-3", source: "1", target: "3",sourceHandle: 'b'}];
       const [nodes, setNodes] = useState(initialNodes);
       const [edges, setEdges] = useState(initialEdges);
 
