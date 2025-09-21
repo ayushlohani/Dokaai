@@ -45,12 +45,12 @@ const ConditionFormNode = ({
         type : 'customnodeplus'
       },{
         id: `${idToAssign+2}`,
-        position: { x: xIndex+300, y: yIndex + 200 },
+        position: { x: xIndex+290, y: yIndex + 200 },
         data:{sourceId:idToAssign+2},
         type : 'customnodeplus'
       },
     ]);
-    setEdges([...edges,{ id: `e${idToAssign-1}-${idToAssign}`, source: `${idToAssign-1}`, target: `${idToAssign}`,sourceHandle: `${idToAssign-1}`},{ id: `e${idToAssign}-${idToAssign+1}`, source: `${idToAssign}`, target: `${idToAssign+1}`,sourceHandle: `${idToAssign}`,label: 'false'},{ id: `e${idToAssign}-${idToAssign+2}`, source: `${idToAssign}`, target: `${idToAssign+2}`,sourceHandle: `${idToAssign}`,label: 'true',}]);
+    setEdges([...edges,{ id: `e${idToAssign-1}-${idToAssign}`, source: `${idToAssign-1}`, target: `${idToAssign}`,sourceHandle: `${idToAssign-1}`},{ id: `e${idToAssign}-${idToAssign+1}`, source: `${idToAssign}`, target: `${idToAssign+1}`,sourceHandle: `${idToAssign}`,label: 'False'},{ id: `e${idToAssign}-${idToAssign+2}`, source: `${idToAssign}`, target: `${idToAssign+2}`,sourceHandle: `${idToAssign}`,label: 'True',}]);
     setYIndex(yIndex + 200);
     setIdToAssign(idToAssign + 3);
     setFormOpen("");
