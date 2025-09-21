@@ -17,16 +17,18 @@ const ActionFlowStart = ({setActionFlow,setFormOpen,setNodes,idToAssign,setIdToA
   const handleSave = () => {
     setActionFlow({ name, description, tag, notificationType });
     console.warn(idToAssign);
-    setNodes([{ id: `${idToAssign}`, position: { x: xIndex, y: yIndex+100 }, data: { label: name,description,icon:"bolt",isTarget:false } ,type : 'customnode'}]);
+    setNodes([{ id: `${idToAssign}`, position: { x: xIndex, y: yIndex+100 }, data: { label: name,description,icon:"bolt",isTarget:false,sourceId:idToAssign } ,type : 'customnode'}]);
     setIdToAssign(idToAssign+1);
     setYIndex(yIndex+100);
     setFormOpen("");
   };
 
   return (
-    <div className="actionformcreate p-6 absolute top-[100px] left-[10px] bg-white w-[450px] h-[620px] z-50 flex flex-col gap-6 rounded-lg shadow-lg">
+    <div className="actionformcreate p-6 absolute top-[100px] left-[10px] bg-white w-[450px] h-[620px] z-50 flex flex-col gap-6 rounded-lg shadow-lg" >
       <div className="form flex flex-col gap-4">
-        <h5 className="text-black font-semibold text-lg">Enter Handler details</h5>
+        <h5 className="text-black font-semibold text-lg flex"><span onClick={setFormOpen} className="mr-1 hover:cursor-pointer">
+            ← 
+          </span>{" "}Enter Handler details</h5>
 
         {/* Name */}
         <div className="flex flex-col gap-1">

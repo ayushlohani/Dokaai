@@ -12,8 +12,8 @@ const RecipeintForm = ({setFormOpen,setNodes,nodes,edges,setEdges,setRecipeint,i
   const handleSave = () => {
     setRecipeint({ customerPool, recipientType });
     console.warn(idToAssign);
-    setNodes([...nodes,{ id: `${idToAssign}`, position: { x: xIndex, y: yIndex+100 }, data: { label: "Recipients",description:`You are using ${recipientType} from ${customerPool} pool`,icon:"db",isTarget:true } ,type : 'customnode'}]);
-    setEdges([...edges,{ id: "e1-2", source: `${idToAssign-1}`, target: `${idToAssign}`,sourceHandle: 'b'}]);
+    setNodes([...nodes,{ id: `${idToAssign}`, position: { x: xIndex, y: yIndex+100 }, data: { label: "Recipients",description:`You are using ${recipientType} from ${customerPool} pool`,icon:"db",isTarget:true,sourceId:idToAssign } ,type : 'customnode'}]);
+    setEdges([...edges,{ id: `e${idToAssign-1}-${idToAssign}`, source: `${idToAssign-1}`, target: `${idToAssign}`,sourceHandle: `${idToAssign-1}`}]);
     setYIndex(yIndex+100);
     setIdToAssign(idToAssign+1);
     setFormOpen("");

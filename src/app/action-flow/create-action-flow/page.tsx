@@ -19,13 +19,16 @@ import { FlowCanvas } from "@/cuteui/components/flowCanvas";
 import { HiOutlineBolt } from "react-icons/hi2";
 import ActionFlowStart from "@/app/components/sideFloatingForm/ActionFlowStart";
 import RecipeintForm from "@/app/components/sideFloatingForm/RecipeintForm";
+import ConditionFormNode from "@/app/components/sideFloatingForm/ConditionNodeForm";
 
 const Page = () => {
   const handleClick = () => alert("Hello");
   const [idToAssign,setIdToAssign] = useState(1);
   const [xIndex,setXIndex] = useState(0);
   const [yIndex,setYIndex] = useState(0);
-  const [setrecipeint,setRecipeint] = useState({});
+  const [recipeint,setRecipeint] = useState({});
+  const [condition,setCondition] = useState({});
+
   const initialNodes = [
       { id: "1", position: { x: 100, y: 100 }, data: { label: "Node 1" } ,type : 'customnode'},
       { id: "2", position: { x: 200, y: 200 }, data: { label: "Node 2" } },
@@ -47,6 +50,9 @@ const Page = () => {
       {formOpen == "Recipents" && 
       <RecipeintForm setFormOpen = {setFormOpen} setRecipeint={setRecipeint} nodes = {nodes} setNodes = {setNodes} edges = {edges} setEdges = {setEdges} 
       idToAssign = {idToAssign} setIdToAssign={setIdToAssign} xIndex = {xIndex} yIndex = {yIndex} setXIndex={setXIndex} setYIndex={setYIndex}/>}
+      {formOpen == "Condition" && 
+      <ConditionFormNode setFormOpen = {setFormOpen} setCondition={setCondition} nodes = {nodes} setNodes = {setNodes} edges = {edges} setEdges = {setEdges} 
+      idToAssign = {idToAssign} setIdToAssign={setIdToAssign} xIndex = {xIndex} yIndex = {yIndex} setXIndex={setXIndex} setYIndex={setYIndex}/>}
 
       {/* Header */}
       <div className="header bg-white py-4 px-8 w-full flex justify-between items-center">
@@ -63,7 +69,15 @@ const Page = () => {
           <span className="text-[18px]">{actionFlow?.name || "Untitled"}</span>
         </div>
         <div className="right flex gap-2.5">
-          <Button
+          {actionFlow?.name ?<Button
+            text="Edit"
+            variant="outlined"
+            color="secondary"
+            icon={<IoSaveOutline size={20} />}
+            position="leading"
+            size="medium"
+            onClick={handleClick}
+          /> : <Button
             text="Save"
             variant="outlined"
             color="secondary"
@@ -71,7 +85,7 @@ const Page = () => {
             position="leading"
             size="medium"
             onClick={handleClick}
-          />
+          />}
           <Button
             text="Publish"
             variant="contained"
@@ -79,6 +93,7 @@ const Page = () => {
             icon={<IoPaperPlaneOutline size={20} />}
             position="leading"
             size="medium"
+            disabled = {actionFlow?.name ? false : true}
             onClick={handleClick}
           />
         </div>
